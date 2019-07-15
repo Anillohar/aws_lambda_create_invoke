@@ -1,0 +1,59 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: "AWS lambda for data preprocessing template"
+Resources:
+    LambdaTrigger:
+      Type: 'AWS::Lambda::Function'
+      Properties:
+        Code: 
+            S3Bucket: "anillohar"
+            S3Key: "index.zip"
+        #DeadLetterConfig: 
+        #    TargetArn: "arn of our sns/sqs service aws"
+        Description: "AWS Lambda for Infersent Embedding pickle files"
+        # Environment: Environment variables that are accessible from function code during execution.
+        #FunctionName: "Data Embedding and Encoding Function"
+        Handler: "index.handler"
+        #KmsKeyArn: "arn:aws:cloudformation:ap-south-1:789866249758:stack/awscloudformation2/0db5c270-a0d3-11e9-8271-06ba22c3467e"
+        #Layers: 
+        #    - String
+        #A list of function layers to add to the function's execution environment. Specify each layer by its ARN, including the version.
+        MemorySize: 1024
+        #ReservedConcurrentExecutions: Integer
+        #   The number of simultaneous executions to reserve for the function.
+        Role: "arn:aws:iam::789866249758:role/executionlambdarole-StatesExecutionRole-4VHFXINMT4Q"
+        Runtime: "python3.7"
+        Tags: 
+          - 
+            Key: "Department"
+            Value: "Python Team"
+          - 
+            Key: "Developer"
+            Value: "Anil Kumar Lohar" 
+        Timeout: 3
+        #Tracing config configures the aws x-ray to trace the logs in AWS X-RAY
+        TracingConfig: 
+            Mode: Active 
+        #VpcConfig:
+        #     - !Ref LambdaSecurity
+            # SecurityGroupIds: 
+            #     -
+            # SubnetIds: 
+            #     -
+    # LambdaSecurity:
+    #   Type: 'AWS::EC2::SecurityGroup'
+    #   Properties:
+    #     GroupName: LambdaSecurityGroup
+    #     GroupDescription: Lambda_Security_group_for_data_preprocesing
+    #     SecurityGroupIngress:
+    #         - CidrIp: 0.0.0.0/0
+    #           Description: locally accessible
+    #           FromPort: '80'
+    #           IpProtocol: TCP
+    #           ToPort: '80'
+    #         - CidrIp: 0.0.0.0/0
+    #           Description: locally accessible
+    #           FromPort: '22'
+    #           IpProtocol: TCP
+    #           ToPort: '22'
+
+    

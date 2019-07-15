@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: "AWS kms key"
+Resources:
+    AWSKMSKEY:
+        Type: AWS::KMS::Key
+        Properties: 
+          Description: "Kms key for aws lambda data encryption"
+          Enabled: Yes
+          #EnableKeyRotation: Boolean
+          KeyPolicy:
+            Version: "2012-10-17"
+            Id: "key-default-1"
+            Statement:
+              Sid: "Allow administration"
+              Effect: "Allow"
+              Principal:
+                AWS: "arn:aws:iam::789866249758:user/anil"
+              Action: "*"
+              Resource: "*"
+          # KeyUsage: ""
+          # PendingWindowInDays: Integer
+          Tags: 
+            - Key: "Department"
+              Value: "Python Team"
+            - Key: "Developer"
+              Value: "Anil Kumar Lohar" 
